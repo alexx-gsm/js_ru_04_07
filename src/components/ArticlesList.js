@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import Article from './Article'
 import PropTypes from 'prop-types'
 import accordion from '../decorators/accordion'
+import { loadAllArticles } from './../AC/articles'
 
 class ArticlesList extends Component {
     render() {
-        const {articles, toggleOpenItem, openItemId} = this.props
+        const {articles, toggleOpenItem, openItemId, } = this.props
         const articleElements = articles.map(article => (
             <li key = {article.id}>
                 <Article
@@ -14,13 +15,20 @@ class ArticlesList extends Component {
                     toggleOpen = {toggleOpenItem(article.id)}
                 />
             </li>
-        ))
+        ));
+
         return (
-            <ul>
-                {articleElements}
-            </ul>
+            <section>
+                <ul>
+                    {articleElements}
+                </ul>
+                <hr/>
+                <button onClick={this.handleReload}>reload</button>
+            </section>
+
         )
     }
+    handleReload = () => loadAllArticles();
 }
 
 ArticlesList.propTypes = {
@@ -28,6 +36,6 @@ ArticlesList.propTypes = {
     //from accordion decorator
     openItemId: PropTypes.string,
     toggleOpenItem: PropTypes.func.isRequired
-}
+};
 
 export default accordion(ArticlesList)

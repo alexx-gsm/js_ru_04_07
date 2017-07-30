@@ -13,9 +13,11 @@ function CommentList(props) {
     )
 }
 
-function getBody({ comments, isOpen }) {
-    if (!isOpen) return null
+function getBody({ isOpen }) {
+    const comments = this.props.article.getRelation('comments');
+    if (!isOpen) return null;
     if (!comments.length) return <h3>No comments yet</h3>
+
     return (
         <ul>
             {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
