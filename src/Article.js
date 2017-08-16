@@ -2,17 +2,12 @@ import React, {Component} from 'react'
 import CommentList from './components/commentList'
 
 class Article extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            isOpen: false,
-            showComments: false
-        }
-    }
+    state = {
+        isOpen: false
+    };
 
     render() {
-        const { article } = this.props
+        const { article } = this.props;
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
@@ -27,8 +22,7 @@ class Article extends Component {
         return (
             <div>
                 <p>{article.text}</p>
-                <button onClick={this.handleComments}>{this.state.showComments ? 'Hide' : 'Show' } comments</button>
-                {this.getComments(article)}
+                <CommentList {...article}/>
             </div>
         )
     };
@@ -39,18 +33,6 @@ class Article extends Component {
             isOpen: !this.state.isOpen
         })
     };
-
-    getComments = ({ comments }) =>
-        (!this.state.showComments) ? '' :
-        (comments.length) ? <CommentList comments={comments}/> :
-        <i>no comments</i>
-
-
-    handleComments = () => {
-        this.setState({
-            showComments: !this.state.showComments
-        })
-    }
 }
 
 export default Article
