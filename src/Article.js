@@ -16,36 +16,35 @@ class Article extends Component {
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
-                {this.getBody()}
+                {this.getBody(article)}
             </div>
         )
     }
 
-    getBody() {
+    getBody = (article) => {
         if (!this.state.isOpen) return null;
 
         return (
             <div>
-                <p>{this.props.article.text}</p>
+                <p>{article.text}</p>
                 <button onClick={this.handleComments}>{this.state.showComments ? 'Hide' : 'Show' } comments</button>
-                {this.getComments()}
+                {this.getComments(article)}
             </div>
         )
-    }
+    };
 
     handleClick = (ev) => {
-        ev.preventDefault()
+        ev.preventDefault();
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
+    };
 
-    getComments = () => {
-        const { article: { comments = [] } } = this.props;
-        return  (!this.state.showComments) ? '' :
-                (comments.length) ? <CommentList comments={comments}/> : <i>no comments</i>
+    getComments = ({ comments }) =>
+        (!this.state.showComments) ? '' :
+        (comments.length) ? <CommentList comments={comments}/> :
+        <i>no comments</i>
 
-    }
 
     handleComments = () => {
         this.setState({
@@ -53,17 +52,5 @@ class Article extends Component {
         })
     }
 }
-
-/*
-function Article(props) {
-    const { article } = props
-    return (
-        <div>
-            <h3>{article.title}</h3>
-            <p>{article.text}</p>
-        </div>
-    )
-}
-*/
 
 export default Article
