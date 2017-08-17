@@ -3,24 +3,33 @@ import CommentList from './commentList'
 import PropTypes from 'prop-types'
 
 const Article = (props) => {
-    const { article, toggleOpen } = props;
+    const { title, toggleOpen } = props;
     return (
         <div>
-            <h3 onClick = {toggleOpen}>{article.title}</h3>
+            <h3 onClick = {toggleOpen}>{title}</h3>
             {getBody(props)}
         </div>
     )
 };
 
-function getBody({isOpen, article}) {
+function getBody({isOpen, comments, text}) {
     if (!isOpen) return null;
 
     return (
         <div>
-            <p>{article.text}</p>
-            <CommentList {...article}/>
+            <p>{text}</p>
+            <CommentList comments={comments}/>
         </div>
     )
 }
+
+Article.PropTypes = {
+    title: PropTypes.string,
+    text: PropTypes.string,
+    comments: PropTypes.array,
+    // from decorator
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
+};
 
 export default Article;

@@ -5,4 +5,4 @@ export const Comment = ({ user, text }) => (
             <p>author: <i>{user}</i></p>
             <div>{text}</div>
         </div>
-    )
+    );

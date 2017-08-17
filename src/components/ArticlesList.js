@@ -8,7 +8,7 @@ class ArticlesList extends React.Component {
         const { articles, openItemId, toggleItem } = this.props;
         const articleElements = articles.map(article =>
             <li key = {article.id}>
-                <Article article = {article}
+                <Article {...article}
                          isOpen = {openItemId === article.id }
                          toggleOpen = {toggleItem(article.id)}
                 />
@@ -29,6 +29,10 @@ ArticlesList.PropTypes = {
     toggleItem: PropTypes.func,
     // from props
     articles: PropTypes.array
+};
+
+ArticlesList.defaultProps = {
+    articles: []
 };
 
 export default accordion(ArticlesList)
