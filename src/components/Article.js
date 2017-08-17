@@ -1,6 +1,6 @@
 import React from 'react'
 import CommentList from './commentList'
-import toggleOpen from './../decorators/toggleOpen'
+import PropTypes from 'prop-types'
 
 const Article = (props) => {
     const { article, toggleOpen } = props;
@@ -21,6 +21,6 @@ function getBody({isOpen, article}) {
             <CommentList {...article}/>
         </div>
     )
-};
+}
 
-export default toggleOpen(Article);
+export default Article;
