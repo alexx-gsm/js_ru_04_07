@@ -11,11 +11,25 @@ module.exports = {
         publicPath: '/static/'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js/,
                 loaders: ['babel-loader'],
                 include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.css$/,
+                // exclude: /node_modules/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.less$/,
+                // exclude: /node_modules/,
+                use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     }

@@ -1,0 +1,52 @@
+.form {
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+    width: 500px;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  &__group_submit {
+    padding-bottom: 0;
+    align-items: center;
+  }
+
+  &__error {
+    font-size: 12px;
+    color: #c70000;
+  }
+  &__validation {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .currentValue {
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .minValue, .maxValue { font-size: 10px}
+  }
+  &__validation.minValueError {
+    .minValue, .currentValue {
+      color: red;
+    }
+  }
+  &__validation.maxValueError {
+    .maxValue, .currentValue {
+      color: red;
+    }
+  }
+
+}
+.btn {
+
+  .btm-primary {
+
+  }
+}
